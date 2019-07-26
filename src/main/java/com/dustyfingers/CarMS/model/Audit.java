@@ -7,14 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
 @Entity
 public class Audit {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int audit_id;
 	@Column(name = "date_created")
-	private String date_created;
+	private LocalDate date_created;
 	@Column(name = "deleted")
 	private boolean deleted;
 	@Column(name = "created_by")
@@ -26,22 +27,19 @@ public class Audit {
 	
 	@ManyToOne
 	@JoinColumn(name = "car_id")
-	private Car car;
+	private int car;
 	
 	public Audit() {
 		super();
 	}
 
-
-	public Audit(int audit_id, String date_created, boolean deleted, String created_by, String description) {
+	public Audit(String created_by, LocalDate date_created, boolean deleted, String description) {
 		super();
-		this.audit_id = audit_id;
-		this.date_created = date_created;
+        this.created_by = created_by;
 		this.deleted = deleted;
-		this.created_by = created_by;
+        this.date_created = date_created;
 		this.description = description;
 	}
-
 
 	public int getAudit_id() {
 		return audit_id;
@@ -51,11 +49,11 @@ public class Audit {
 		this.audit_id = audit_id;
 	}
 
-	public String getDate_created() {
+	public LocalDate getDate_created() {
 		return date_created;
 	}
 
-	public void setDate_created(String date_created) {
+	public void setDate_created(LocalDate date_created) {
 		this.date_created = date_created;
 	}
 
