@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 26, 2019 at 03:03 AM
+-- Generation Time: Jul 26, 2019 at 05:16 AM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `audit` (
   `audit_id` int(11) NOT NULL,
   `created_by` varchar(255) DEFAULT NULL,
-  `date_created` varchar(255) DEFAULT NULL,
+  `date_created` date DEFAULT NULL,
   `deleted` bit(1) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `car_id` int(11) DEFAULT NULL
@@ -42,10 +42,10 @@ CREATE TABLE `audit` (
 --
 
 INSERT INTO `audit` (`audit_id`, `created_by`, `date_created`, `deleted`, `description`, `car_id`) VALUES
-(1, 'Admin', '01/06/2019', NULL, 'Good Condition', 1),
-(2, 'admin', '26/07/2019', NULL, 'Health Check', 1),
-(3, 'Admin', '20/07/2019', NULL, 'Health Check', 2),
-(4, 'Admin', '26/07/2019', NULL, 'Health Check', 2);
+(1, 'admin', '2019-06-03', NULL, 'good condition', 1),
+(2, 'admin', '2019-06-03', NULL, 'good condition', 2),
+(3, 'admin', '2019-07-24', NULL, 'Health Check', 1),
+(4, 'admin', '2019-07-21', NULL, 'Health Check', 2);
 
 -- --------------------------------------------------------
 
