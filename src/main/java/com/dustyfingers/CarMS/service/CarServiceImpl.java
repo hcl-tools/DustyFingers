@@ -29,7 +29,7 @@ public class CarServiceImpl {
             LocalDate dateCreated = LocalDate.now();
             boolean deleted = false;
             String description = "created car";
-            Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+            Audit audit = new Audit(createdBy, dateCreated, deleted, description, car);
             audit = auditRepository.save(audit);
             if (audit == null) {
                 throw new Exception("audit not created");
@@ -71,7 +71,7 @@ public class CarServiceImpl {
             LocalDate dateCreated = LocalDate.now();
             boolean deleted = false;
             String description = "updated car";
-            Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+            Audit audit = new Audit(createdBy, dateCreated, deleted, description, car);
             System.out.println(audit.getAudit_id() + " " + audit.getCreated_by());
             audit = auditRepository.save(audit);
 
@@ -99,7 +99,7 @@ public class CarServiceImpl {
                 LocalDate dateCreated = LocalDate.now();
                 boolean deleted = true;
                 String description = "car deleted";
-                Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+                Audit audit = new Audit(createdBy, dateCreated, deleted, description, new Car(id));
                 audit = auditRepository.save(audit);
                 if (audit == null) {
                     throw new Exception("car not deleted");
@@ -110,7 +110,7 @@ public class CarServiceImpl {
             LocalDate dateCreated = LocalDate.now();
             boolean deleted = false;
             String description = "car deleted";
-            Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+            Audit audit = new Audit(createdBy, dateCreated, deleted, description, new Car(id));
             audit = auditRepository.save(audit);
             if (audit == null) {
                 throw new Exception("car not deleted");
