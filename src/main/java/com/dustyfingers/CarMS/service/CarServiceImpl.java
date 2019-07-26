@@ -72,7 +72,9 @@ public class CarServiceImpl {
             boolean deleted = false;
             String description = "updated car";
             Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+            System.out.println(audit.getAudit_id() + " " + audit.getCreated_by());
             audit = auditRepository.save(audit);
+
             if (audit == null) {
                 throw new Exception("car not updated");
             }
@@ -89,7 +91,20 @@ public class CarServiceImpl {
             Car carToDelete = this.findCarById(id);
             // delete and check isn't there anymore as this JPA method has a void return
             carRepository.delete(carToDelete);
-            carToDelete = this.findCarById(id); // throws exception
+            try {
+                carToDelete = this.findCarById(id); // throws exception
+            } catch (Exception e) {
+                // create audit
+                String createdBy = "ADMIN";
+                LocalDate dateCreated = LocalDate.now();
+                boolean deleted = true;
+                String description = "car deleted";
+                Audit audit = new Audit(createdBy, dateCreated, deleted, description);
+                audit = auditRepository.save(audit);
+                if (audit == null) {
+                    throw new Exception("car not deleted");
+                }
+            }
             // create audit
             String createdBy = "ADMIN";
             LocalDate dateCreated = LocalDate.now();
@@ -103,6 +118,9 @@ public class CarServiceImpl {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+
+
+
         return false;
     }
 }

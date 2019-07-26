@@ -48,9 +48,6 @@ public class Car {
 	@Column(name="manufacturer")
 	private String manufacturer;
 	
-	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
-    private List<Audit> Audits;
-	
 	public Car() {
 		super();
 	}
