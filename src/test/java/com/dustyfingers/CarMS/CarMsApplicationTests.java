@@ -1,4 +1,4 @@
-package com.dustyfingers.carms;
+package com.dustyfingers.CarMS;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
