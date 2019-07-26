@@ -18,7 +18,7 @@ public class CarServiceImpl {
     @Autowired
     AuditRepository auditRepository;
 
-    Car makeCar(Car car) throws Exception {
+    public Car makeCar(Car car) throws Exception {
         try {
             car = carRepository.save(car);
             if (car == null) {
@@ -40,12 +40,12 @@ public class CarServiceImpl {
         return car;
     }
 
-    Car findCarById(int id) throws SQLException {
+    public Car findCarById(int id) throws SQLException {
         return carRepository.findById(id)
                 .orElseThrow(() -> new SQLException("car not found"));
     }
 
-    List<Car> findAllCars() {
+    public List<Car> findAllCars() {
         Iterable<Car> cars = carRepository.findAll();
         if(cars instanceof List) {
             return (List<Car>) cars;
@@ -59,7 +59,7 @@ public class CarServiceImpl {
         return list;
     }
 
-    Car updateCar(Car car) throws Exception {
+    public Car updateCar(Car car) throws Exception {
         try {
             // update car
             car = carRepository.save(car);
@@ -74,7 +74,7 @@ public class CarServiceImpl {
             Audit audit = new Audit(createdBy, dateCreated, deleted, description);
             audit = auditRepository.save(audit);
             if (audit == null) {
-                throw new Exception("car not created");
+                throw new Exception("car not updated");
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -82,7 +82,7 @@ public class CarServiceImpl {
         return car;
     }
 
-    boolean deleteCar(int id) throws Exception {
+    public boolean deleteCar(int id) throws Exception {
         boolean isDeleted = false;
         try {
             // find car to delete
@@ -94,7 +94,7 @@ public class CarServiceImpl {
             String createdBy = "ADMIN";
             LocalDate dateCreated = LocalDate.now();
             boolean deleted = false;
-            String description = "deleted car";
+            String description = "car deleted";
             Audit audit = new Audit(createdBy, dateCreated, deleted, description);
             audit = auditRepository.save(audit);
             if (audit == null) {
