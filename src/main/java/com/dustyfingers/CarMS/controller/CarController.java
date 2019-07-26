@@ -21,6 +21,11 @@ public class CarController {
     @Qualifier("carService")
     private CarServiceImpl carService;
 
+    /**
+     * Post route to create Car in db
+     * @param car
+     * @return Response Entity Car
+     */
     @RequestMapping(value = "/cars", method = RequestMethod.POST)
     public ResponseEntity<Car> createCar(@RequestBody @Valid @NotBlank Car car) {
         try {
@@ -30,6 +35,11 @@ public class CarController {
         }
     }
 
+    /**
+     * Put route to update car in database
+     * @param car
+     * @return Response Entity Car
+     */
     @RequestMapping(value = "/cars", method = RequestMethod.PUT)
     public ResponseEntity<Car> editCar(@RequestBody Car car) {
         try {
@@ -39,6 +49,11 @@ public class CarController {
         }
     }
 
+    /**
+     * Get route to get a specific car by id
+     * @param car
+     * @return Response Entity Car
+     */
     @RequestMapping(value = "/cars/{car}", method = RequestMethod.GET)
     public ResponseEntity<Car> getCar(@PathVariable("car") @NotBlank String car) {
         try {
@@ -48,6 +63,10 @@ public class CarController {
         }
     }
 
+    /**
+     * Get route to get all cars
+     * @return List of Response Entities of Car
+     */
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getAllCars() {
         try {
@@ -57,6 +76,11 @@ public class CarController {
         }
     }
 
+    /**
+     * Delete route to delete a specific car by id
+     * @param car
+     * @return String detailing if delete was successful
+     */
     @RequestMapping(value = "/cars/{car}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCar(@PathVariable("car") @NotBlank String car) {
         try {
