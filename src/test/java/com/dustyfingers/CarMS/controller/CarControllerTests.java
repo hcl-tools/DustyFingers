@@ -1,4 +1,4 @@
-package com.dustyfingers.carms.controller;
+package com.dustyfingers.CarMS.controller;
 
 public class CarControllerTests {
 }
