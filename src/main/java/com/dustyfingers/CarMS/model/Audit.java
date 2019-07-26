@@ -27,7 +27,7 @@ public class Audit {
 	
 	@ManyToOne
 	@JoinColumn(name = "car_id")
-	private int car;
+	private Car car;
 	
 	public Audit() {
 		super();
