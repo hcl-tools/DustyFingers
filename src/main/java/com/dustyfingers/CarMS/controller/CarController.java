@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @RequestMapping("/v1")
 @RestController
@@ -32,4 +33,15 @@ public class CarController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+
+    @RequestMapping(value = "/cars", method = RequestMethod.GET)
+    public ResponseEntity<List<Car>> getAllCars() {
+        try {
+            return new ResponseEntity<List<Car>>(carService.findAllCars(), HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+
 }
