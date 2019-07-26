@@ -47,16 +47,36 @@ public class Car {
 	
 	@Column(name="manufacturer")
 	private String manufacturer;
+
+	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Audit> Audits;
 	
 	public Car() {
 		super();
 	}
 	
-
+	public Car(int car_id){
+		super();
+		this.car_id = car_id;
+	}
 	public Car(int car_id, String model, String color, String license_plate, int seat_count, int rating,
 			String engine_type, boolean transmission, String car_type, String manufacturer) {
 		super();
 		this.car_id = car_id;
+		this.model = model;
+		this.color = color;
+		this.license_plate = license_plate;
+		this.seat_count = seat_count;
+		this.rating = rating;
+		this.engine_type = engine_type;
+		this.transmission = transmission;
+		this.car_type = car_type;
+		this.manufacturer = manufacturer;
+	}
+
+	public Car(String model, String color, String license_plate, int seat_count, int rating,
+			   String engine_type, boolean transmission, String car_type, String manufacturer) {
+		super();
 		this.model = model;
 		this.color = color;
 		this.license_plate = license_plate;

@@ -102,6 +102,4 @@ public class CarServiceTests {
         car = carController.deleteCar(car);
         Assert.assertNotNull(car);
     }
-
-
 }

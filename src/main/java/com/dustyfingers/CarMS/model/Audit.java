@@ -1,5 +1,7 @@
 package com.dustyfingers.CarMS.model;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -33,12 +36,13 @@ public class Audit {
 		super();
 	}
 
-	public Audit(String created_by, LocalDate date_created, boolean deleted, String description) {
+	public Audit(String created_by, LocalDate date_created, boolean deleted, String description, Car car) {
 		super();
         this.created_by = created_by;
 		this.deleted = deleted;
         this.date_created = date_created;
 		this.description = description;
+		this.car = car;
 	}
 
 	public int getAudit_id() {
